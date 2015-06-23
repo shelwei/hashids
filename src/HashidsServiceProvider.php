@@ -81,6 +81,9 @@ class HashidsServiceProvider extends ServiceProvider
      */
     protected function registerManager(Application $app)
     {
+        if(!isset($app['config']['hashids']))
+            $app->configure('hashids');
+        
         $app->singleton('hashids', function ($app) {
             $config = $app['config'];
             $factory = $app['hashids.factory'];
